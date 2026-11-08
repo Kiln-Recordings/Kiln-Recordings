@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alexander Hulme</title>
+<meta name="description" content="Alexander Hulme, singer-songwriter. The debut album is on its way. Pre-order now and follow the journey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body class="ah">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/img/ah-wordmark-light.png" alt="Alexander Hulme home"></a>
+    <nav aria-label="Alexander Hulme">
+      <a href="#album">Album</a>
+      <a href="#journal">Journal</a>
+      <a href="#letters">Stay in the loop</a>
+      <a class="cross" href="kiln.html">Kiln Recordings ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="a-hero" id="album">
+    <div class="mist" aria-hidden="true"></div>
+    <div class="mist two" aria-hidden="true"></div>
+    <div class="wrap a-stack">
+      <img class="cover" src="assets/img/album-cover.jpg" alt="Album cover: wildfire smoke rising over a mountain ridge above a forest road" width="1024" height="1024">
+      <h1 class="debut">The Debut Album</h1>
+      <div class="btn-row">
+        <a class="btn btn-solid" href="#">Pre-order the album</a>
+        <a class="btn btn-line" href="#journal">Follow the journey</a>
+      </div>
+      <!-- Album preview: replace assets/audio/album-preview.mp3 to change the clip -->
+      <div class="preview" data-src="assets/audio/album-preview.mp3">
+        <button class="preview-play" type="button" aria-label="Play a preview">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+        </button>
+        <div class="preview-body">
+          <span class="preview-label">Play a preview</span>
+          <div class="preview-line"><span></span></div>
+        </div>
+        <span class="preview-time">0:00</span>
+      </div>
+    </div>
+    <div class="ridge" aria-hidden="true">
+      <svg viewBox="0 0 1440 200" preserveAspectRatio="none"><path fill="currentColor" d="M0 200V120l70-28 60 24 90-62 70 40 80-54 110 80 70-30 90 44 120-96 100 70 80-34 90 50 110-66 90 52 70-26 90 40h50V200Z"/></svg>
+    </div>
+  </section>
+
+  <section class="a-section" id="journal">
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px">
+        <div style="display:grid;gap:10px">
+          <span class="a-label">Journal</span>
+          <h2>Notes from the <em>making</em></h2>
+        </div>
+        <a class="btn btn-line" href="journal.html">All entries</a>
+      </div>
+      <div class="journal-list">
+        <a class="post-link" href="post-making-the-record.html">
+          <time datetime="2026-11-03">3 November 2026</time>
+          <div><h3>Making the record</h3><p>A first look at how the album was written and recorded.</p></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="a-section signup" id="letters">
+    <div class="wrap">
+      <h2>Stay in <em>the loop</em></h2>
+      <p style="color:var(--a-mist);max-width:48ch">Release dates, early listens and new journal entries, straight to your inbox. No more than once a month.</p>
+      <form class="signup-form" name="mailing-list" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="mailing-list">
+        <label class="skip" for="m-email">Email address</label>
+        <input id="m-email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+        <button class="btn btn-solid" type="submit">Sign up</button>
+        <p class="form-status" role="status" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© Alexander Hulme</span>
+    <span>[Instagram] · [Spotify] · <a href="kiln.html">Kiln Recordings</a></span>
+  </div>
+</footer>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
