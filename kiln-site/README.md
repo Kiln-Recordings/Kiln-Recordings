@@ -3,10 +3,11 @@
 Plain HTML, CSS and JavaScript. No framework and no build step. Open `index.html` in a browser to view it.
 
 ## Files
-- `index.html`: the hub (split screen)
-- `kiln.html`: studio page (hero, featured on, testimonials, listen, studio, services, enquiry form)
+- `index.html`: Kiln Recordings studio page, the home page (hero, featured on, testimonials, studio photo, listen, services, enquiry form)
+- `hub.html`: the split-screen hub (reached from the flame and the Alexander Hulme wordmark)
 - `plugins.html`: Kiln Audio Suite plugins (Mastering and FX)
-- `alexander.html`: album, journal and the Stay in the loop sign-up
+- `alexander.html`: album, social links, Follow the journey (journal) and the Stay in the loop sign-up
+- `shop.html`: Alexander Hulme shop (each Buy button links to a Stripe, PayPal or Shopify checkout link)
 - `journal.html` and `post-*.html`: the blog
 - `assets/css/site.css`: all styling (colours and fonts at the top)
 - `assets/js/site.js`: forms, the Listen player, the album preview and the testimonial slider

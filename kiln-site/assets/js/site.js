@@ -67,7 +67,8 @@ document.querySelectorAll("form[data-netlify]").forEach((form) => {
     if (rough) {
       const ab = document.createElement("div"); ab.className = "t-ab"; ab.setAttribute("role", "group");
       ab.setAttribute("aria-label", "Compare versions");
-      ab.innerHTML = '<button type="button" aria-pressed="false" data-v="before">Rough mix</button><button type="button" aria-pressed="true" data-v="after">Final</button>';
+      const L = li.parentElement.dataset;
+      ab.innerHTML = `<button type="button" aria-pressed="false" data-v="before">${L.labelBefore || "Rough mix"}</button><button type="button" aria-pressed="true" data-v="after">${L.labelAfter || "Final"}</button>`;
       ab.addEventListener("click", (e) => {
         const b = e.target.closest("button"); if (!b) return;
         showBefore = b.dataset.v === "before";
@@ -150,3 +151,36 @@ document.querySelectorAll(".slider").forEach((slider) => {
   let t; track.addEventListener("scroll", () => { clearTimeout(t); t = setTimeout(mark, 60); });
   mark();
 });
+
+// ---------- Releases strip: tap a cover to load the Spotify player (nothing loads or plays until then) ----------
+document.querySelectorAll(".releases").forEach((box) => {
+  const track = box.querySelector(".rel-track"), player = box.querySelector(".rel-player");
+  box.querySelectorAll(".rel-ctrl .q-btn").forEach((b) => b.addEventListener("click", () => {
+    track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.8 });
+  }));
+  track.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); track.scrollBy({ left: (e.key === "ArrowRight" ? 1 : -1) * 240 }); }
+  });
+  const rels = [...box.querySelectorAll(".rel")];
+  rels.forEach((btn) => {
+    const url = btn.dataset.spotify;
+    const m = url && url.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|artist|episode|show)\/([A-Za-z0-9]+)/);
+    if (!m) { btn.setAttribute("aria-disabled", "true"); btn.tabIndex = -1; return; }
+    btn.setAttribute("aria-pressed", "false");
+    btn.addEventListener("click", () => {
+      rels.forEach((r) => r.getAttribute("aria-pressed") && r.setAttribute("aria-pressed", String(r === btn)));
+      const tall = m[1] !== "track" && m[1] !== "episode";
+      const f = document.createElement("iframe");
+      f.src = `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator&theme=0`;
+      f.height = tall ? 352 : 152; f.setAttribute("frameborder", "0"); f.referrerPolicy = "strict-origin-when-cross-origin";
+      f.allow = "clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+      f.title = `Spotify player: ${btn.querySelector(".rel-cap")?.textContent || "release"}`;
+      const open = document.createElement("a");
+      open.className = "rel-open"; open.href = url; open.target = "_blank"; open.rel = "noopener"; open.textContent = "Open in Spotify ↗";
+      player.replaceChildren(f, open);
+    });
+  });
+});
+
+/* Plugins logo video: hold still for reduced-motion users */
+(function(){try{var v=document.querySelector(".p-logo-vid");if(v&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){v.removeAttribute("autoplay");v.pause();}}catch(e){}})();
