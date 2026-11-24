@@ -101,15 +101,14 @@
     <div class="wrap">
       <div class="k-head">
         <div><span class="k-label">Listen</span><h2>Hear the work</h2></div>
-        <p>Artists I've produced. Tap a cover to listen.</p>
+        <p>Artists I've produced. Tap a cover to listen on Spotify.</p>
       </div>
       <!--
         HOW TO ADD A RELEASE: copy one <li> block below and fill in:
-          data-spotify = the Spotify link to the track or album (copy it from Spotify: Share, then Copy link)
+          href = the Spotify link to the track or album (copy it from Spotify: Share, then Copy link)
           artwork      = replace <span class="rel-art"> with <img class="rel-art" src="assets/img/art/your-file.jpg" alt="Artist, Song">
           artist/song  = the two lines under the cover
-        A tile with an empty data-spotify just shows "Artwork" and does nothing when tapped.
-        Spotify's player only loads when a visitor taps a cover. Nothing plays by itself.
+        Tapping a cover opens that release on Spotify in a new tab. Nothing plays by itself.
       -->
       <div class="releases">
         <div class="rel-ctrl">
@@ -117,42 +116,39 @@
           <button class="q-btn" type="button" data-dir="1" aria-label="Scroll releases right">→</button>
         </div>
         <ul class="rel-track" tabindex="0" aria-label="Releases">
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/track/2vfr8bqnWBUylrecRWU2wY">
+          <li><a class="rel" href="https://open.spotify.com/track/2vfr8bqnWBUylrecRWU2wY" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/harrison-rimmer-better-in-fiction.jpg" alt="Harrison Rimmer, Better In Fiction" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Harrison Rimmer</b><span>Better In Fiction</span></span>
-          </button></li>
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/track/2EtFayFzTGQDdrQ1utiWRy">
+          </a></li>
+          <li><a class="rel" href="https://open.spotify.com/track/2EtFayFzTGQDdrQ1utiWRy" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/faded-projectors-absolute-power.jpg" alt="Faded Projectors, Absolute Power" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Faded Projectors</b><span>Absolute Power</span></span>
-          </button></li>
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/album/3cgcnZVuzlB8y2WGVinrIx">
+          </a></li>
+          <li><a class="rel" href="https://open.spotify.com/album/3cgcnZVuzlB8y2WGVinrIx" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/brendan-cleary-love-of-mine.jpg" alt="Brendan Cleary, Love of Mine" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Brendan Cleary</b><span>Love of Mine</span></span>
-          </button></li>
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/track/23wmJg46mA0nj5BTD2KMLz">
+          </a></li>
+          <li><a class="rel" href="https://open.spotify.com/track/23wmJg46mA0nj5BTD2KMLz" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/succulents-underdog.jpg" alt="Succulents, Underdog" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Succulents</b><span>Underdog</span></span>
-          </button></li>
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/track/5xtZkdjwXTfRriBi2AWjNv">
+          </a></li>
+          <li><a class="rel" href="https://open.spotify.com/track/5xtZkdjwXTfRriBi2AWjNv" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/goldzbrough-good-things-never-last.jpg" alt="Goldzbrough, Good Things Never Last (Acoustic)" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Goldzbrough</b><span>Good Things Never Last (Acoustic)</span></span>
-          </button></li>
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/track/6W2BB1oqummWrKRkpeGEeo">
+          </a></li>
+          <li><a class="rel" href="https://open.spotify.com/track/6W2BB1oqummWrKRkpeGEeo" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/conor-michael-let-me-run.jpg" alt="Conor Michael, Let Me Run" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Conor Michael</b><span>Let Me Run</span></span>
-          </button></li>
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/track/7q55lxeRFuDgqvLBXiOPzM">
+          </a></li>
+          <li><a class="rel" href="https://open.spotify.com/track/7q55lxeRFuDgqvLBXiOPzM" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/alexander-hulme-bullet.jpg" alt="Alexander Hulme, Bullet" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Alexander Hulme</b><span>Bullet</span></span>
-          </button></li>
-          <li><button type="button" class="rel" data-spotify="https://open.spotify.com/album/5yTHUZEUyDZoyBC5cKrbp6">
+          </a></li>
+          <li><a class="rel" href="https://open.spotify.com/album/5yTHUZEUyDZoyBC5cKrbp6" target="_blank" rel="noopener">
             <img class="rel-art" src="assets/img/art/goldzbrough-enough.jpg" alt="Goldzbrough, Enough (Acoustic)" width="800" height="800" loading="lazy">
             <span class="rel-cap"><b>Goldzbrough</b><span>Enough (Acoustic)</span></span>
-          </button></li>
+          </a></li>
         </ul>
-        <div class="rel-player" id="rel-player" aria-live="polite">
-          <p class="rel-hint">Tap a cover to listen here.</p>
-        </div>
       </div>
     </div>
   </section>

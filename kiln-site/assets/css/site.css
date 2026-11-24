@@ -450,7 +450,7 @@ body.ah::before { content: ""; position: fixed; inset: 0 0 auto; height: env(saf
 .rel-track::-webkit-scrollbar { display: none; }
 .rel-track:focus-visible { outline: 1px solid var(--k-line); outline-offset: 8px; }
 .rel-track li { flex: 0 0 clamp(160px, 20vw, 230px); scroll-snap-align: start; }
-.rel { display: grid; gap: 12px; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.rel { display: grid; text-decoration: none; gap: 12px; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .rel-art { display: grid; place-items: center; width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--k-surface); border: 1px solid var(--k-line); font-family: var(--f-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--k-muted); transition: transform .25s, border-color .25s, box-shadow .25s; }
 .rel:hover .rel-art, .rel:focus-visible .rel-art { transform: translateY(-3px); border-color: var(--k-ember); }
 .rel[aria-pressed="true"] .rel-art { border-color: var(--k-ember); box-shadow: 0 0 0 2px var(--k-ember); }

@@ -152,33 +152,14 @@ document.querySelectorAll(".slider").forEach((slider) => {
   mark();
 });
 
-// ---------- Releases strip: tap a cover to load the Spotify player (nothing loads or plays until then) ----------
+// ---------- Releases strip: scroll buttons and arrow keys (covers are plain links to Spotify) ----------
 document.querySelectorAll(".releases").forEach((box) => {
-  const track = box.querySelector(".rel-track"), player = box.querySelector(".rel-player");
+  const track = box.querySelector(".rel-track");
   box.querySelectorAll(".rel-ctrl .q-btn").forEach((b) => b.addEventListener("click", () => {
     track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.8 });
   }));
   track.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); track.scrollBy({ left: (e.key === "ArrowRight" ? 1 : -1) * 240 }); }
-  });
-  const rels = [...box.querySelectorAll(".rel")];
-  rels.forEach((btn) => {
-    const url = btn.dataset.spotify;
-    const m = url && url.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|artist|episode|show)\/([A-Za-z0-9]+)/);
-    if (!m) { btn.setAttribute("aria-disabled", "true"); btn.tabIndex = -1; return; }
-    btn.setAttribute("aria-pressed", "false");
-    btn.addEventListener("click", () => {
-      rels.forEach((r) => r.getAttribute("aria-pressed") && r.setAttribute("aria-pressed", String(r === btn)));
-      const tall = m[1] !== "track" && m[1] !== "episode";
-      const f = document.createElement("iframe");
-      f.src = `https://open.spotify.com/embed/${m[1]}/${m[2]}?utm_source=generator&theme=0`;
-      f.height = tall ? 352 : 152; f.setAttribute("frameborder", "0"); f.referrerPolicy = "strict-origin-when-cross-origin";
-      f.allow = "clipboard-write; encrypted-media; fullscreen; picture-in-picture";
-      f.title = `Spotify player: ${btn.querySelector(".rel-cap")?.textContent || "release"}`;
-      const open = document.createElement("a");
-      open.className = "rel-open"; open.href = url; open.target = "_blank"; open.rel = "noopener"; open.textContent = "Open in Spotify ↗";
-      player.replaceChildren(f, open);
-    });
   });
 });
 
