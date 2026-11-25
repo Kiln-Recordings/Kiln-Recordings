@@ -163,5 +163,44 @@ document.querySelectorAll(".releases").forEach((box) => {
   });
 });
 
+// ---------- Release clips: first tap on a cover with data-clip plays a short preview in a small player; tapping it again opens Spotify ----------
+document.querySelectorAll(".releases").forEach((box) => {
+  const player = box.querySelector(".rel-player");
+  if (!player) return;
+  const PLAY = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
+  const PAUSE = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z"/></svg>';
+  const fmt = (s) => !isFinite(s) ? "0:00" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+  let audio = null, active = null;
+  const stop = () => { if (audio) { audio.pause(); audio = null; } };
+  const rels = [...box.querySelectorAll("a.rel[data-clip]")];
+  // Clip covers carry no href while idle (so nothing can navigate on the first tap); the Spotify link waits in data-href.
+  rels.forEach((a) => { if (a.getAttribute("href")) { a.dataset.href = a.getAttribute("href"); a.removeAttribute("href"); } a.setAttribute("role", "button"); a.tabIndex = 0; });
+  const go = (a) => window.open(a.dataset.href, "_blank", "noopener");
+  rels.forEach((a) => a.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); a.click(); } }));
+  rels.forEach((a) => a.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!a.dataset.clip) return go(a);
+    if (active === a) return go(a);      // second tap: open Spotify
+    stop(); active = a;
+    rels.forEach((r) => r.setAttribute("aria-pressed", String(r === a)));
+    const cap = a.querySelector(".rel-cap")?.textContent || "clip";
+    const au = audio = new Audio(a.dataset.clip); au.preload = "auto";
+    const play = document.createElement("button"); play.type = "button"; play.className = "t-play"; play.innerHTML = PAUSE; play.setAttribute("aria-label", `Pause ${cap}`);
+    const seek = document.createElement("input"); seek.type = "range"; seek.className = "t-seek"; seek.min = 0; seek.max = 1000; seek.value = 0; seek.setAttribute("aria-label", `Position in ${cap}`);
+    const time = document.createElement("span"); time.className = "t-time"; time.textContent = "0:00";
+    const label = document.createElement("span"); label.className = "rel-now"; label.textContent = a.querySelector(".rel-cap b")?.textContent + " · " + (a.querySelector(".rel-cap span")?.textContent || "");
+    const open = document.createElement("a"); open.className = "rel-open"; open.href = a.dataset.href; open.target = "_blank"; open.rel = "noopener"; open.textContent = "Open in Spotify ↗";
+    const bar = document.createElement("div"); bar.className = "rel-bar"; bar.append(play, seek, time);
+    player.replaceChildren(label, bar, open); player.hidden = false;
+    const ui = (on) => { play.innerHTML = on ? PAUSE : PLAY; play.setAttribute("aria-label", `${on ? "Pause" : "Play"} ${cap}`); };
+    play.addEventListener("click", async () => { if (!audio.paused) { audio.pause(); ui(false); } else { try { await audio.play(); ui(true); } catch { ui(false); } } });
+    audio.addEventListener("timeupdate", () => { const p = audio.duration ? audio.currentTime / audio.duration : 0; seek.value = Math.round(p * 1000); seek.style.setProperty("--p", `${p * 100}%`); time.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`; });
+    audio.addEventListener("ended", () => { ui(false); audio.currentTime = 0; });
+    au.addEventListener("error", () => { if (au !== audio) return; go(a); player.hidden = true; active = null; a.setAttribute("aria-pressed", "false"); });
+    seek.addEventListener("input", () => { if (audio.duration) audio.currentTime = (seek.value / 1000) * audio.duration; });
+    audio.play().then(() => ui(true)).catch(() => ui(false));
+  }));
+});
+
 /* Plugins logo video: hold still for reduced-motion users */
 (function(){try{var v=document.querySelector(".p-logo-vid");if(v&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){v.removeAttribute("autoplay");v.pause();}}catch(e){}})();
