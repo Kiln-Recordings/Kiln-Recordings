@@ -109,8 +109,7 @@ body.kiln { background: var(--k-bg); color: var(--k-fg); font-family: var(--f-ki
 .k-hero .k-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(32px, 6vw, 88px); align-items: center; justify-items: stretch; text-align: left; }
 .k-hero-copy { display: grid; gap: 26px; justify-items: start; }
 .k-hero-copy .k-hero-logo { width: min(520px, 100%); }
-.k-hero-copy h1 { font-family: var(--f-kiln-body); font-weight: 400; font-size: clamp(1.2rem, 1.9vw, 1.45rem); letter-spacing: 0; line-height: 1.5; max-width: 40ch; color: var(--k-fg); }
-.k-hero-copy p { max-width: 54ch; }
+.k-hero-copy h1, .k-hero-copy p { font-family: var(--f-kiln-body); font-weight: 400; font-size: 1.0625rem; letter-spacing: 0; line-height: 1.6; max-width: 54ch; color: var(--k-fg); }
 .k-hero-copy .btn-row { justify-content: flex-start; }
 .k-portrait { margin: 0; display: grid; gap: 12px; justify-self: end; width: 100%; max-width: 440px; }
 .k-portrait img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; filter: saturate(.9) contrast(1.02); }
